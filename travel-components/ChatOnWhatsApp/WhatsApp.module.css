@@ -1,0 +1,55 @@
+.WhatsAppDiv {
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    animation: whatsappGlow 5s ease-in-out infinite;
+}
+  
+.WhatsAppDiv:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+  
+.WhatsAppDiv img {
+    width: 48px;
+    height: 48px;
+    display: block;
+}
+
+@keyframes whatsappGlow {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    30% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+    }
+    60% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@keyframes whatsappPulse {
+    0%, 90%, 100% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+    95% {
+      transform: scale(1.15);
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    }
+}

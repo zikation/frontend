@@ -1,0 +1,29 @@
+.FooterContentView {
+    width: 80%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    overflow-y: scroll;
+    padding: 2rem;
+}
+
+.FooterContentTitle {
+    font-size: larger;
+    font-weight: bold;
+    text-align: left;
+}
+
+.FooterContentSection {
+    width: 100%;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.SectionLi {
+    text-align: left;
+    font-weight: normal;
+}

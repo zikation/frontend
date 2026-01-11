@@ -1,0 +1,53 @@
+:root {
+    --lightColor: blue;
+    --lightHoverColor: rgb(5, 5, 164);
+    --lightFontColor: white;
+    --darkColor: #1a0155;
+    --darkHoverColor: #3203a0;
+    --darkFontColor: white;
+    --sectionBackGroundColor: rgba(0, 0, 0, 0.5);
+    --contentBackgroundColor: rgba(0, 0, 0, 0.6);
+    --contentFontColor: white;
+    --pageBackGroundColor: #2e2c2c;
+    --pageFontColor: white;
+    --fontColor: white;
+}
+
+.blueTheme {
+    --lightColor: blue;
+    --darkColor: #1a0155;
+}
+
+.redTheme {
+    --lightColor: red;
+    --darkColor: #27010c;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Calibri', 'Arial', sans-serif;
+    background-color: var(--pageBackGroundColor);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pageFontColor);
+    text-align: justify;
+    user-select: none;
+    margin: 0;
+}
+
+.Error404Content {
+    align-items: center;
+    justify-items: center;
+    color: white;
+}
+
+.Error404Content a {
+    display: flex;    
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+}

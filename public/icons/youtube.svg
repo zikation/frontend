@@ -1,0 +1,25 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 48 48"
+  width="30"
+  height="30"
+  aria-label="YouTube"
+  role="img"
+>
+  <!-- Rounded rectangle -->
+  <rect
+    x="6"
+    y="12"
+    width="36"
+    height="24"
+    rx="6"
+    ry="6"
+    fill="#ffffff"
+  />
+
+  <!-- Play triangle -->
+  <polygon
+    points="21,18 21,30 31,24"
+    fill="#000000"
+  />
+</svg>

@@ -1,0 +1,69 @@
+Homepage Layout for Travel Website
+----------------------------------
+
+1. Hero Section: Capture attention and enable quick search
+   - Full-width hero banner (background image or video)
+   - Tagline: “Explore the World, One Journey at a Time”
+   - Optional search bar:
+        • “Where to?”
+        • “Select Type (Tours / Activities / Cabs)”
+        • Search button
+   - CTA buttons: “Explore India”, “View International Packages”
+
+2. Quick Access / Highlights
+   - Quick navigation to main service areas:
+        • Domestic Tours
+        • International Tours
+        • Day Activities
+        • Cab Rentals
+
+3. Popular Destinations in India
+   - Show top Indian states:
+        • Kerala
+        • Goa
+        • Himachal Pradesh
+        • Rajasthan
+   - Include “View All” link to /india
+
+4. International Highlights
+   - Show top international destinations:
+        • Bali
+        • Dubai
+        • Switzerland
+        • France
+   - Include “View All” link to /abroad
+
+5. Featured Packages / Tours
+   - Section title: “Handpicked Tours for You”
+   - Display carousel or grid of tours
+   - Each tour card:
+        • Image
+        • Title
+        • Short description
+        • Starting price
+        • “View Details” link
+
+6. Explore by Theme
+   - Section title: “Explore by Theme”
+   - Example themes:
+        • Honeymoon
+        • Adventure
+        • Family
+        • Wildlife
+        • Pilgrimage
+
+7. Testimonials / Reviews
+   - Highlight customer experiences and ratings
+
+8. Blog Highlights
+   - Section titled “Travel Stories & Guides”
+   - Show 3–4 featured blogs with images and snippets
+   - “Read More” or “Visit Blog” button
+
+9. CTA Banner
+   - Section encouraging bookings or newsletter signup
+   - Example: “Ready for Your Next Adventure? Let’s Go!”
+
+10. Footer
+    - Company info, contact, social links
+    - Quick links to About, Terms, Privacy Policy, FAQ, etc.

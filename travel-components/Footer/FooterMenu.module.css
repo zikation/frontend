@@ -1,0 +1,12 @@
+.FooterHeader {
+    font-size: large;
+    font-weight: bold;
+}
+
+.FooterLinks {
+  cursor: pointer;
+}
+
+.FooterMenu {
+    z-index: 10000;
+}
