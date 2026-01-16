@@ -1,9 +1,10 @@
 // next.config.mjs
 import redirectsMap from './utils/Redirects.json' assert { type: 'json' }
 
-const API_BASE = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:2500'
-    : 'https://api.zikation.com'
+const API_BASE =
+  typeof window === "undefined"
+    ? "http://127.0.0.1:2500"   // server (Next.js, sitemap, SSG)
+    : "";                     // browser (goes via Nginx /api)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,13 +21,12 @@ const nextConfig = {
         return tourRedirects
     },
 
-    // ✅ 2️⃣ Rewrites (frontend → backend passthrough)
-        async rewrites() {
-            return [{
-                source: '/sitemap.xml',
-                destination: `${API_BASE}/internal/sitemap.xml`,
-            }]
-        }
+    async rewrites() {
+        return [{
+            source: '/api/:path*',
+            destination: 'http://localhost:2500/:path*',
+        }]
+    }
 }
 
 export default nextConfig

@@ -13,7 +13,7 @@ export default function LocationListingPage({ tours, location, error }) {
 export async function getStaticPaths() {
     let paths = []
     try {
-        const res = await fetch(`${backend.tourUrl}/all-locations`)
+        const res = await fetch(`${backend.fullTourURL}/all-locations`)
         const {locations} = await res.json()
 
         paths = locations.map(loc => ({
@@ -31,8 +31,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const { location } = params
-    const url = backend.searchTourURL + '/' + location.toLowerCase()
+    const url = backend.fullSearchTourURL + '/' + location.toLowerCase()
     try {
+        var res = await fetch(`${backend.validateURL}?location=${location}`)
+        if (res.status === 404)
+            return {notFound: true}
+
         var tours = await GetTours(url, "Could not get the tours for " + location)
         return {
             props: {

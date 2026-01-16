@@ -11,7 +11,7 @@ export default function TourSlug({ data }) {
 export async function getStaticProps(context) {
     const { location, sublocation, slug } = context.params
     try {
-        const res = await fetch(`${backend.tourUrl}/${location}/${sublocation}/${slug}`);
+        const res = await fetch(`${backend.fullTourURL}/${location}/${sublocation}/${slug}`);
         if (!res.ok)
             return { props: {data: {err: res.status, str: "Could not get the tour details" }}}
 
@@ -26,7 +26,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
     let paths = []
     try {
-        const res = await fetch(`${backend.tourUrl}/all-tours`) // TODO: Should be all-slugs
+        const res = await fetch(`${backend.fullTourURL}/all-tours`) // TODO: Should be all-slugs
         const slugs = await res.json()
         if (!slugs) return
 

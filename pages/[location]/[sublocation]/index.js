@@ -16,7 +16,7 @@ export async function getStaticPaths() {
     let paths = []
 
     try {
-        const res = await fetch(`${backend.tourUrl}/all-sublocations`)
+        const res = await fetch(`${backend.fullTourURL}/all-sublocations`)
         const {data} = await res.json()
         if (!data) return
 
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const { location, sublocation } = params;
-    const url = backend.searchTourURL + '/' + sublocation.toLowerCase()
+    const url = backend.fullSearchTourURL + '/' + sublocation.toLowerCase()
 
     // Is this pair valid?
     if (!isValidLocationPair(location, sublocation)) {
@@ -58,6 +58,10 @@ export async function getStaticProps({ params }) {
     }
 
     try {
+        var res = await fetch(`${backend.validateURL}?location=${location}&sublocation=${sublocation}`)
+        if (res.status === 404)
+            return {notFound: true}
+
         var tours = await GetTours(url, "Could not get the tours for " + sublocation)
         return {
             props: {

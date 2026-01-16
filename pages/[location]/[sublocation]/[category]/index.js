@@ -2,6 +2,7 @@ import backend from '@/utils/backend'
 import TourListPage from '@/travel-components/TourListPage/TourListPage'
 import RedirectOnError from '@/travel-components/Error/RedirectOnError'
 import { GetTours } from '@/utils/actions'
+import { notFound } from 'next/navigation'
 
 export default function CategoryListingPage({ tours, location, sublocation, category, error }) {
     var message = 'We do not have ' + category + ' at this location'
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
     let paths = []
 
     try {
-        const res = await fetch(`${backend.tourUrl}/all-sublocations`)
+        const res = await fetch(`${backend.fullTourURL}/all-sublocations`)
         const {data} = await res.json()
         if (!data) return
 
@@ -42,8 +43,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const { location, sublocation, category } = params;
-    const url = backend.searchTourURL + '/' + sublocation.toLowerCase()
+    const url = backend.fullSearchTourURL + '/' + sublocation.toLowerCase()
     try {
+        var res = await fetch(`${backend.validateURL}?location=${location}&sublocation=${sublocation}&category=${category}`)
+        if (res.status === 404)
+            return {notFound: true}
+
         var tours = await GetTours(url, "Could not get the tours for " + sublocation)
         return {
             props: {
