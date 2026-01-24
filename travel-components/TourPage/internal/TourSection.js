@@ -20,11 +20,11 @@ function TourBody({ content, type = "none" }) {
         <div className={styles.TourBody}>
             {type === "bullet" ? (
                 <ul>
-                    {isArray ? content.map((c, i) => <li key={i}>{c}</li>) : <li>{content}</li>}
+                    {isArray ? content.map((c, i) => <li key={i}><ReactMarkdown>{c}</ReactMarkdown></li>) : <li><ReactMarkdown>{content}</ReactMarkdown></li>}
                 </ul>
             ) : type === "numbered" ? (
                 <ol>
-                    {isArray ? content.map((c, i) => <li key={i}>{c}</li>) : <li>{content}</li>}
+                    {isArray ? content.map((c, i) => <li key={i}><ReactMarkdown>{c}</ReactMarkdown></li>) : <li><ReactMarkdown>{content}</ReactMarkdown></li>}
                 </ol>
             ) : type === "component" ? (
                 content

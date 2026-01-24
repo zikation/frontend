@@ -135,3 +135,24 @@ export function isValidLocationPair(location, sublocation) {
   
     return loc.sublocations?.[sublocation] !== undefined
 }
+
+export function handleInvalidLocationPair(location, sublocation, category=null, slug=null) {
+    console.log('Invalid Pair: ' + location + ' - ' + sublocation)
+    const realLocation = findRealLocation(sublocation)
+
+    if (!realLocation) return { notFound: true }
+
+    var destinationURL = `/${realLocation}/${sublocation}`
+    if (category) destinationURL = destinationURL + `/${category}`
+    if (category && slug) destinationURL = destinationURL + `/${slug}`
+
+    if (realLocation) {
+        return {
+            redirect: {
+                destination: destinationURL,
+                permanent: true
+            }
+        }
+    }
+    
+}

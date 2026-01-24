@@ -34,5 +34,47 @@
     {
       "old": "/tour-package/tripura-tour-package-from-agartala",
       "new": "/india/tripura/tours/tripura-tour-package"
+    }, {
+      "old": "/tour-package/kerala-kanyakumari-tour",
+      "new": "/india/kerala/tours/kerala-kanyakumari-tour"
+    }, {
+      "old": "/tour-package/kerala-tour",
+      "new": "/india/kerala/tours/kerala-package-tour"
+    }, {
+      "old": "/tour-package/truly-meghalaya-tour-package-from-guwahati",
+      "new": "/india/meghalaya/meghalaya-tour-packages"
+    }, {
+      "old": "/tour-package/kashmir-great-lakes-trek",
+      "new": "/india/jammu-and-kashmir/kgl-kashmir-great-lakes-trek"
+    }, {
+      "old": "/tour-package/tarsar-marsar-trek-kashmir",
+      "new": "/india/jammu-and-kashmir/tarsar-marsar-trek"
+    }, {
+      "old": "/tour-package/tosamaidan-greater-lakes-trek-kashmir",
+      "new": "/india/jammu-and-kashmir/tosamaidan-greater-lakes-trek"
+    }, {
+      "old": "/tour-package/dwarka-and-somnath-tour-from-ahmedabad",
+      "new": "/india/gujarat/dwarka-somnath-tour"
+    }, {
+      "old": "/tour-package/saurashtra-tour-gujarat-from-ahmedabad",
+      "new": "/india/gujarat/saurashtra-tour-package"
+    }, {
+      "old": "/tour-package/tour-to-diu-and-saurashtra-from-ahmedabad",
+      "new": "/india/gujarat/saurashtra-tour-package"
+    }, {
+      "old": "/tour-package/rann-of-kutch-group-tour-from-mumbai",
+      "new": "/india/gujarat/rann-of-kutch-package"
+    }, {
+      "old": "/tour-package/trip-to-bhuj-from-ahmedabad",
+      "new": "/india/gujarat/rann-of-kutch-package"
+    }, {
+      "old": "/tour-package/weekend-tour-to-rann-of-kutch-from-ahmedabad",
+      "new": "/india/gujarat/rann-of-kutch-package"
+    }, {
+      "old": "/tour-package/trip-to-kutch-from-ahmedabad",
+      "new": "/india/gujarat/rann-of-kutch-package"
+    }, {
+      "old": "/tour-package/rann-of-kutch-tour-from-ahmedabad",
+      "new": "/india/gujarat/rann-of-kutch-package"
     }
 ]

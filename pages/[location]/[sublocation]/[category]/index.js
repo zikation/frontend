@@ -3,6 +3,7 @@ import TourListPage from '@/travel-components/TourListPage/TourListPage'
 import RedirectOnError from '@/travel-components/Error/RedirectOnError'
 import { GetTours } from '@/utils/actions'
 import { notFound } from 'next/navigation'
+import { handleInvalidLocationPair, isValidLocationPair } from '@/utils/PlacesMenuDetails'
 
 export default function CategoryListingPage({ tours, location, sublocation, category, error }) {
     var message = 'We do not have ' + category + ' at this location'
@@ -42,20 +43,31 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const { location, sublocation, category } = params;
-    const url = backend.fullSearchTourURL + '/' + sublocation.toLowerCase()
+    const { location, sublocation, category } = params
+
+    // Is this pair valid?
+    if (!isValidLocationPair(location, sublocation)) {
+        return handleInvalidLocationPair(location, sublocation, category)
+    }
+    
+    const url = backend.fullGetSubLocationURL + '/' + sublocation.toLowerCase() + '/' + category.toLowerCase()
     try {
         var res = await fetch(`${backend.validateURL}?location=${location}&sublocation=${sublocation}&category=${category}`)
         if (res.status === 404)
             return {notFound: true}
 
-        var tours = await GetTours(url, "Could not get the tours for " + sublocation)
+        var data = await GetTours(url, "Could not get the tours for " + sublocation)
+        if (!data.location || !data.tours || !Array.isArray(data.tours))
+            return {notFound: true}
+        
+        var tours = data.tours
         return {
             props: {
                 location,
                 sublocation,
                 category,
                 error: false,
+                locationDesc: data.location,
                 tours: tours.map(t=>({
                             price: t.price,
                             location: t.location,

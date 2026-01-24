@@ -4,10 +4,10 @@ import { GetTours } from '@/utils/actions'
 import RedirectOnError from '@/travel-components/Error/RedirectOnError'
 
 /* For now, we list only tours */
-export default function LocationListingPage({ tours, location, error }) {
+export default function LocationListingPage({ tours, location, error, locationDesc }) {
     if (error)
         return <RedirectOnError />
-    return <TourListPage tours={tours} location={location} />
+    return <TourListPage tours={tours} location={location} locationDesc={locationDesc} />
 }
 
 export async function getStaticPaths() {
@@ -31,16 +31,21 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const { location } = params
-    const url = backend.fullSearchTourURL + '/' + location.toLowerCase()
+    const url = backend.fullGetLocationURL + '/' + location.toLowerCase()
     try {
         var res = await fetch(`${backend.validateURL}?location=${location}`)
         if (res.status === 404)
             return {notFound: true}
 
-        var tours = await GetTours(url, "Could not get the tours for " + location)
+        var data = await GetTours(url, "Could not get the tours for " + location)
+        if (!data.location || !data.tours || !Array.isArray(data.tours))
+            return {notFound: true}
+        
+        var tours = data.tours
         return {
             props: {
             location,
+            locationDesc: data.location,
             tours: tours.map(t=>({
                         price: t.price,
                         location: t.location,

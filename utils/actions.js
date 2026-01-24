@@ -24,7 +24,7 @@ export async function GetTours(url, errstr) {
             return { props: {data: {err: res.status, errstr }}}
     
         const data = await res.json()
-        return data.tours
+        return data
     }
     catch (e) {
         console.error('Could not fetch from backend: ' + errstr + ' Error: ' + e)

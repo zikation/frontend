@@ -11,11 +11,22 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
       
+}
+
+.TourListPage h1 {
+    text-align: center;
+    padding: 2rem;
+}
+
+.TourCardsWrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 16px;
+    padding: 2rem;
 }
 
 .TourCard {
@@ -99,12 +110,6 @@
 }
 
 .TourListWrapper {
-    /* position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
     position: fixed;
     inset: 0;
     display: flex;
@@ -120,4 +125,8 @@
 
 .BackgroundImage {
     object-fit: cover;
-  }
+}
+
+.TourListPageSection {
+    padding: 1rem;
+}

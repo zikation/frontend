@@ -1,8 +1,6 @@
 import Head from 'next/head'
-import TourSetBackGround from "./internal/TourSetBackGround"
 import TourInfo from "./internal/TourInfo"
 import TourItinerary from "./internal/TourItinerary"
-// import TourPriceFloater from "./internal/TourPriceFloater"
 import TourSummary from "./internal/TourSummary"
 import { TourTitle } from "./internal/TourTitle"
 import { BrandName, SiteBaseURL } from '@/utils/constants'
