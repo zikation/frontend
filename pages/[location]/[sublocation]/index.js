@@ -5,11 +5,10 @@ import { isValidLocationPair, handleInvalidLocationPair } from '@/utils/PlacesMe
 import RedirectOnError from '@/travel-components/Error/RedirectOnError'
 
 /* For now, we list only tours */
-export default function SublocationListingPage({ tours, location, sublocation, error, locationDesc }) {
-    console.log(locationDesc)
+export default function SublocationListingPage({ tours, location, sublocation, error }) {
     if (error)
         return <RedirectOnError />
-    return <TourListPage tours={tours} location={location} sublocation={sublocation} locationDesc={locationDesc} />
+    return <TourListPage tours={tours} location={location} sublocation={sublocation} />
 }
 
 export async function getStaticPaths() {

@@ -9,18 +9,18 @@ import TourParent from './internal/TourParent'
 import Image from 'next/image'
 import dynamic from "next/dynamic"
 
-const TourPriceFloater = dynamic(() => import("./internal/TourPriceFloater"), {
-  ssr: false
-})
+const TourPriceFloater = dynamic(() => import("./internal/TourPriceFloater"), { ssr: false})
 
 export default function TourPage({tour}) {
     var canonicalUrl = tour.isVariantOf ? `${SiteBaseURL}/${tour.location}/${tour.sublocation}/${tour.isVariantOf}` :
         `${SiteBaseURL}/${tour.location}/${tour.sublocation}/${tour.slug}`
     var canonicalKeywords = tour.variantKeywords && Array.isArray(tour.variantKeywords) ? tour.variantKeywords.join(', ') : null
+    var pagetitle = tour.pagetitle ? tour.pagetitle : tour.title
+    pagetitle = pagetitle + ' - ' + BrandName
     return (
         <>
             <Head>
-                <title>{`${tour.title} - ${BrandName}`}</title>
+                <title>{pagetitle}</title>
                 <meta name='description' content={tour.metadesc ? tour.metadesc : `Book ${tour.title} with ${BrandName}`} />
                 <link rel="canonical" href={canonicalUrl} />
                 {canonicalKeywords && (<meta property="keywords" content={canonicalKeywords} />)}
@@ -38,14 +38,7 @@ export default function TourPage({tour}) {
             <div className={styles.TourPageWrapper}>
                 {tour.bkgd?.path && (
                     <div className={styles.FullScreenBackground}>
-                        <Image
-                            src={tour.bkgd.path}
-                            alt={tour.bkgd.alt}
-                            fill
-                            priority
-                            sizes="100vw"
-                            className={styles.BackgroundImage}
-                        />
+                        <Image src={tour.bkgd.path} alt={tour.bkgd.alt} fill priority sizes="100vw" className={styles.BackgroundImage} />
                     </div>
                 )}
                 <main className={styles.TourPage}>

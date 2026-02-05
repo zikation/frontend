@@ -1,5 +1,6 @@
-import ReactMarkdown from 'react-markdown'
 import TourSection from "./TourSection"
+import styles from "../TourPage.module.css"
+import { Para } from '@/travel-components/Content/Content'
 
 function TourItineraryDetails({details}) {
     if (!details || !Array.isArray(details)) return null
@@ -9,12 +10,12 @@ function TourItineraryDetails({details}) {
         {
             details.map((detail, i) => {
                 return (
-                    <div key={i}>
+                    <div key={i} className={styles.TourItineraryDetail}>
                         <h3>{"Day " + detail.day + ": " + detail.title}</h3>
                         <p><b>{detail.subtitle ? detail.subtitle : null}</b></p>
                         {
-                            detail.desc.map((d, i) => {
-                                return (<ReactMarkdown key={i}>{d}</ReactMarkdown>)
+                            detail.desc.map((d, j) => {
+                                return <Para key={j} content={d} />
                             })
                         }
                     </div>

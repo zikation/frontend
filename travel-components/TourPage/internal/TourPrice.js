@@ -18,8 +18,8 @@ function ShowAllTourPrice({tour}) {
     return (
         <>
             <h3>Show All Prices</h3>
-            <TourPriceDetails tour={tour} type='custom' />
-            <TourPriceDetails tour={tour} type='group' />
+            { tour.price.custom.length ? <TourPriceDetails tour={tour} type='custom' /> : null }
+            { tour.price.group.length ? <TourPriceDetails tour={tour} type='group' /> : null }
         </>
     )
 }

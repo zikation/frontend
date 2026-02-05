@@ -5,7 +5,7 @@ import { GetTours } from '@/utils/actions'
 import { notFound } from 'next/navigation'
 import { handleInvalidLocationPair, isValidLocationPair } from '@/utils/PlacesMenuDetails'
 
-export default function CategoryListingPage({ tours, location, sublocation, category, error }) {
+export default function CategoryListingPage({ tours, location, sublocation, category, error, locationDesc }) {
     var message = 'We do not have ' + category + ' at this location'
     if (category !== 'tours') 
         return <RedirectOnError message={message} />
@@ -13,7 +13,7 @@ export default function CategoryListingPage({ tours, location, sublocation, cate
     if (error)
         return <RedirectOnError />
 
-    return <TourListPage tours={tours} location={location} sublocation={sublocation} />
+    return <TourListPage tours={tours} location={location} sublocation={sublocation} locationDesc={locationDesc} />
 }  
 
 export async function getStaticPaths() {

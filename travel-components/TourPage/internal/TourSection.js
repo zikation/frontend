@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown'
+import { Bullet, ParaWithDiv } from '@/travel-components/Content/Content'
 import styles from '../TourPage.module.css'
 
 function TourHead({title, subtitle, heading=false}) {
@@ -15,23 +15,14 @@ function TourHead({title, subtitle, heading=false}) {
 function TourBody({ content, type = "none" }) {
     if (!content) return null
   
-    const isArray = Array.isArray(content)
     return (
         <div className={styles.TourBody}>
             {type === "bullet" ? (
-                <ul>
-                    {isArray ? content.map((c, i) => <li key={i}><ReactMarkdown>{c}</ReactMarkdown></li>) : <li><ReactMarkdown>{content}</ReactMarkdown></li>}
-                </ul>
-            ) : type === "numbered" ? (
-                <ol>
-                    {isArray ? content.map((c, i) => <li key={i}><ReactMarkdown>{c}</ReactMarkdown></li>) : <li><ReactMarkdown>{content}</ReactMarkdown></li>}
-                </ol>
+                <Bullet content={content} />
             ) : type === "component" ? (
                 content
             ) : (
-            <div>
-                {isArray ? content.map((c, i) => <ReactMarkdown key={i}>{c}</ReactMarkdown>) : <ReactMarkdown>{content}</ReactMarkdown>}
-            </div>
+                <ParaWithDiv content={content} />
             )}
         </div>
     )

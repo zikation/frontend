@@ -1,8 +1,8 @@
 import TourSection from "./TourSection"
 
 function WriteTourSection({ section, hl }) {
-    if (hl && !section.highlights) return null
-    if (!hl && section.highlights) return null
+    if (hl && !section.highlight) return null
+    if (!hl && section.highlight) return null
 
     return <TourSection title={section.title} subtitle={section.subtitle} 
         content={section.details} type={section.type} />

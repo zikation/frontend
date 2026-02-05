@@ -1,8 +1,8 @@
 :root {
-    --lightColor: blue;
     --lightHoverColor: rgb(5, 5, 164);
     --lightFontColor: white;
-    --darkColor: #1a0155;
+    --lightColor: rgb(105, 54, 181);
+    --darkColor: #480355;
     --darkHoverColor: #3203a0;
     --darkFontColor: white;
     --sectionBackGroundColor: rgba(0, 0, 0, 0.5);
@@ -50,4 +50,12 @@ html, body {
     text-align: center;
     align-items: center;
     justify-items: center;
+}
+
+body a, a:visited, a:active {
+    color: pink;
+}
+
+body a:hover {
+    color: palevioletred
 }
