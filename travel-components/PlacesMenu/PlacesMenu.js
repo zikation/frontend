@@ -38,20 +38,17 @@ function ShowSubLocations({menuitem}) {
     )
 }
 
-function ShowMiniMenu({menuitem}) {
-    var loc = PlacesMenuDetails[menuitem.location]
-    const locAbbr = loc.abbr || loc.substring(0, 2).toUpperCase()
-
+function ShowMiniMenu({}) {
     return (
-        <li className={styles.PlacesMenuLocationItem}>
-            <div className={styles.PlacesMenuMainContainer}>
-                {locAbbr}
-            </div>
-        </li>
+        <div className={styles.PlacesMenuMiniContainer}>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     )
 }
 
-function ShowFullMenu({menuitem}) {
+function ShowMenuItem({menuitem}) {
     var location = PlacesMenuDetails[menuitem.location]
     return (
         <li className={styles.PlacesMenuLocationItem}>
@@ -62,6 +59,20 @@ function ShowFullMenu({menuitem}) {
                 <ShowSubLocations menuitem={menuitem} />
             </div>
         </li>
+    )
+}
+
+function ShowFullMenu({menu}) {
+    return (
+        <nav className={styles.PlacesMenuNav}>
+            <ul className={styles.PlacesMenuLocationUL}>
+                {
+                    menu.map((m, i) => {
+                        return <ShowMenuItem key={i} menuitem={m} />
+                    })
+                }
+            </ul>
+        </nav>
     )
 }
 
@@ -120,15 +131,9 @@ export default function PlacesMenu() {
         <aside ref={menuRef} className={menuExpanded ? styles.PlacesMenuExpanded : styles.PlacesMenu} 
             onMouseEnter={() => setMenuExpanded(true)} onMouseLeave={() => setMenuExpanded(false)}
             onClick={(e) => {e.stopPropagation();  setMenuExpanded(!menuExpanded)}}>
-            <nav className={styles.PlacesMenuNav}>
-                <ul className={styles.PlacesMenuLocationUL}>
-                    {
-                        menu.map((m, i) => {
-                            return menuExpanded ? <ShowFullMenu key={i} menuitem={m} /> : <ShowMiniMenu key={i} menuitem={m} />
-                        })
-                    }
-                </ul>
-            </nav>
+            {
+                !menuExpanded ? <ShowMiniMenu /> : <ShowFullMenu menu={menu} />
+            }
         </aside>
     )
 }

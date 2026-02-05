@@ -10,7 +10,6 @@
     max-height: 80vh;
     overflow-y: auto;
     z-index: 999;
-    /* transition: width 0.3s ease; */
     text-align: center;
 }
 
@@ -65,9 +64,31 @@
 .PlacesMenuSubMenuItem {
     display: block;
     font-weight: bold;
-    /* cursor: pointer; */
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     user-select: none;
-    /* transition: background 0.2s; */
+}
+
+.PlacesMenuMiniContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    gap: 6px;
+    width: 80%;
+    height: 40px;
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.PlacesMenuMiniContainer span {
+    height: 2px;
+    width: 70%;
+    background: var(--lightFontColor);
+    border-radius: 2px;
+    display: block;
 }
