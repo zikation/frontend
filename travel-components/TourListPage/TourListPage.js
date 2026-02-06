@@ -4,7 +4,7 @@ import styles from './TourListPage.module.css'
 import Head from "next/head"
 import { TourImage } from "./TourImage"
 import { BrandName } from "@/utils/constants"
-import { Bullet, Para } from "../Content/Content"
+import TourSection from "../TourPage/internal/TourSection"
 
 function TourListPageHeading({h1}) {
     return h1 ? <h1>{h1}</h1> : null
@@ -30,25 +30,12 @@ function TourCards({tours}) {
     )
 }
 
-function TourListPageSection({section}) {
-    return (
-        <div className={styles.TourListPageSection}>
-            <h2>{section.title}</h2>
-            {
-                section.type === "bullet" ?
-                    <Bullet content={section.desc} /> :
-                    <Para content={section.desc} />
-            }
-        </div>
-    )
-}
-
 function TourListPageSections({content}) {
     return (
         <div className={styles.TourListPageSections}>
             {
                 content?.map((section, i) => {
-                    return <TourListPageSection key={i} section={section} />
+                    return <TourSection key={i} title={section.title} content={section.desc} type={section.type} />
                 })
             }
         </div>

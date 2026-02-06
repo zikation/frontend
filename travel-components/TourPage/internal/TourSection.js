@@ -28,7 +28,7 @@ function TourBody({ content, type = "none" }) {
     )
 }
 
-export default function TourSection({ title, subtitle, heading = false, content, type = 'none'}) {
+export default function TourSection({ title, subtitle = null, heading = false, content, type = 'none'}) {
     return (
         <>
             <TourHead title={title} subtitle={subtitle} heading={heading} />
