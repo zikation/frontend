@@ -1,10 +1,11 @@
 import FullScreenOverlay from '@/travel-components/FullScreenOverlay/FullScreenOverlay'
+import ReactMarkdown from "react-markdown"
 import styles from './FooterContentView.module.css'
 
 function FooterContentTitle({content}) {
     return content.title ? (
         <div className={styles.FooterContentTitle}>
-            <p>{content.title}</p>
+            <ReactMarkdown>{content.title}</ReactMarkdown>
         </div>
     ) : null
 }
@@ -12,11 +13,11 @@ function FooterContentTitle({content}) {
 function FooterContentSection({section}) {
     return (
         <div className={styles.FooterContentSection}>
-            <p className={styles.SectionTitle}>{section.title}</p>
+            <ReactMarkdown>{section.title}</ReactMarkdown>
             <ul>
             {
                 section.details.map((d, i) => {
-                    return <li className={styles.SectionLi} key={i}>{d}</li>
+                    return <li className={styles.SectionLi} key={i}><ReactMarkdown>{d}</ReactMarkdown></li>
                 })
             }
             </ul>

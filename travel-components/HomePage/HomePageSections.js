@@ -1,12 +1,23 @@
+import GroupTours from "./GroupTours";
+import OffbeatTours from "./OffbeatTours";
+
 const { default: TourSearch } = require("@/travel-components/TourSearch/TourSearch");
-const { default: FeaturedTours } = require("./FeaturedTours");
+const { default: PopularTours } = require("./PopularTours");
 const { default: Testimonials } = require("./Testimonials");
 
 const HomePageSections = [{
-    component: FeaturedTours 
-}, {
     style: 'SearchSection',
-    component: TourSearch
+    component: TourSearch,
+    title: "Explore the World, One Journey at a Time"
+}, {
+    component: PopularTours,
+    title: "Popular Tours"
+}, {
+    component: GroupTours,
+    title: "Join Our Group Tours"
+}, {
+    component: OffbeatTours,
+    title: "Explore Offbeat Locations"
 }, {
     component: Testimonials,
     title: 'What our customers say'

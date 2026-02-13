@@ -134,4 +134,10 @@
 .WhatsAppButton:hover::after {
     opacity: 1;
 }
-  
+
+
+.FullScreenBackground {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}

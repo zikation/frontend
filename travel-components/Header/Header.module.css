@@ -17,19 +17,39 @@
     text-align: left;
 }
 
-.Header a {
-    color: white;
+.HeaderCell {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.HeaderCell a {
+    color: yellow;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-decoration: none;
     height: 100%;
+    display: inline;
+    align-items: center;
+}
+
+.HeaderCellCentered {
+    width: 30%;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.HeaderCellCentered p {
+    margin: 0;
+}
+
+.InlineLink {
+    display: inline;
 }
 
 .Logo {
@@ -37,4 +57,19 @@
     width: auto;
     object-fit: contain;
     cursor: pointer;
+}
+
+.WhatsAppLink {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.EmailCell {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .EmailCell {
+        display: none;
+    }
 }

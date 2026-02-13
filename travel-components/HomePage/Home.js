@@ -21,17 +21,19 @@ export default function Home() {
                 <meta name="twitter:image" content={bkgd} />
             </Head>
             <main className={styles.Home}>
-            {HomePageSections.map((s, i) => {
-                const className = s.style && styles[s.style] ? styles[s.style] : styles.HomePageSection
-                const Component = s.component
-                
-                return (
-                    <section key={i} className={className}>
-                    {s.title && <h2 className={styles.OverlayTitle}>{s.title}</h2>}
-                    <Component />
-                </section>
-                )
-            })}
+            {
+                HomePageSections.map((s, i) => {
+                    const className = s.style && styles[s.style] ? styles[s.style] : styles.HomePageSection
+                    const Component = s.component
+                    
+                    return (
+                        <section key={i} className={className}>
+                            {s.title && <h2>{s.title}</h2>}
+                            <Component />
+                        </section>
+                    )
+                })
+            }
             </main>
         </>
     )

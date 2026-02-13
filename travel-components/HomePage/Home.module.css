@@ -13,31 +13,22 @@
     width: 100%;
     height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-radius: 12px;
+    background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
+    margin: 2rem 0 0 0;
 }
-  
-.OverlayTitle {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 2rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    z-index: 2; 
-    pointer-events: none;
-}  
 
 .SearchSection {
     width: 100%;
     min-height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -45,4 +36,5 @@
     margin-bottom: 20px;
     background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
     border-radius: 12px;
+    padding: 1rem;
 }

@@ -1,4 +1,6 @@
+import { FooterContent } from "@/travel-components/Footer/FooterContent";
 import { WhatsAppURL, BrandName } from "./constants"
+import FooterContentView from "@/travel-components/Footer/FooterContentView";
 
 export function GetLowestPrice(price) {
     if (!price) return 0
@@ -32,9 +34,35 @@ export async function GetTours(url, errstr) {
     }
 }
 
-export function SendWhatsAppMessage(text, tourSlug=null) {
-    var url = WhatsAppURL + "&text=" 
-    url += tourSlug ? encodeURIComponent("Hey " + BrandName + "! Interested in Tour ID: " + tourSlug + "\n" + text) : encodeURIComponent(text)
-    window.open(url, "_blank")
+export function SendWhatsAppMessage(router = null, text) {
+    const path = router?.asPath || '/'
+    const fullUrl = typeof window !== 'undefined' ? window.location.origin + path : path
+
+    if (typeof window !== 'undefined')
+        SendGAEvent('whatsapp_click', {
+            event_category: 'contact',
+            event_label: path,
+            page_url: fullUrl
+        })
+
+    const message = text ? text : encodeURIComponent(`Hey ${BrandName}, I'm interested in this page:\n${fullUrl}`)
+    const waUrl = `${WhatsAppURL}?text=${message}`
+    window.open(waUrl, '_blank')
 }
 
+export function SendGAEvent(type, eventProps) {
+    if (window.gtag) {
+        window.gtag('event', type, eventProps)
+    }
+}
+
+export function ShowPages({router, page}) {
+    const contentInfo = FooterContent.policies.find(p => p.name === page) || null
+    return ( 
+        <>
+        {
+            contentInfo && <FooterContentView content={contentInfo} onClose={() => router.push('/')} /> 
+        }
+        </>
+    )
+}

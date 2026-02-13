@@ -1,11 +1,12 @@
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
 import RedirectOnError from "@/travel-components/Error/RedirectOnError"
-import { SendWhatsAppMessage } from "@/utils/actions"
+import { SendGAEvent, SendWhatsAppMessage } from "@/utils/actions"
 import { Email } from '@/utils/constants'
 import backend from "@/utils/backend"
 import styles from './BookTour.module.css'
 import Image from "next/image"
+import LoadingIndicator from "@/travel-components/LoadingIndicator/LoadingIndicator"
 
 export default function BookTourPage() {
     const router = useRouter()
@@ -20,7 +21,7 @@ export default function BookTourPage() {
     useEffect(() => {
         if (!slug || !priceid) return
 
-        fetch(`${backend.tourUrl}/${location}/${sublocation}/${slug}`)
+        fetch(`${backend.fullTourDetailURL}/${slug}`)
             .then(res => res.json())
             .then(data => {
                 if (data.err)
@@ -42,7 +43,7 @@ export default function BookTourPage() {
         return <RedirectOnError message={error} url={url} buttonText='Go to Tour Page' />
 
     if (loading)
-        return <p>Loading...</p>
+        return <LoadingIndicator />
 
     if (!tour)
         return <RedirectOnError message='Oops! Something went wrong' buttonText='Go to Home Page' />
@@ -75,13 +76,21 @@ const handleSubmit = async (e, setError, setSuccess, setOrdering, booking, formL
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 text: booking,
-                formLoadedAt,      // send timestamp
-                honeypot: honeypotValue // send hidden field
+                formLoadedAt,
+                honeypot: honeypotValue
             }),
         })
         const data = await res.json()
-        if (data.err) return setError(data.str)
-        setSuccess(data.success)
+        if (data.err)
+            setError(data.str)
+        else {
+            setSuccess(data.success)
+            SendGAEvent('generate_lead', {
+                event_category: 'engagement',
+                event_label: 'tour_enquiry',
+            })
+        }
+        
     } catch (e) {
         setError(e.message)
     } finally {
@@ -137,6 +146,7 @@ function BookTourForm({ tour, price, ordering, setError, setSuccess, setOrdering
                 <Image
                     src={bkgd}
                     fill
+                    alt="Booking Form"
                     priority
                     sizes="100vw"
                     className={styles.BackgroundImage}
@@ -177,7 +187,7 @@ function BookTourForm({ tour, price, ordering, setError, setSuccess, setOrdering
                         Submit
                     </button>
                 </form>
-                <button className={styles.WhatsAppButton} onClick={() => {SendWhatsAppMessage(booking, tour.slug)}}>Message on WhatsApp</button>
+                <button className={styles.WhatsAppButton} onClick={() => {SendWhatsAppMessage(null, booking)}}>Message on WhatsApp</button>
             </main>
         </div>
     )

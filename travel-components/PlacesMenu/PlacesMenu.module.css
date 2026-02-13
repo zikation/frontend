@@ -4,6 +4,7 @@
     left: 1%;
     width: 5%;
     min-width: 2rem;
+    max-width: 3rem;
     background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
     border-radius: 8px;
     padding: 0.25rem;

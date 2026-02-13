@@ -13,7 +13,6 @@ const backend = {
     backendURL,
     apiPrefix,
     tourPrefix,
-    tourUrl: `/${apiPrefix}/${tourPrefix}`,
     fullTourURL: `${backendURL}/${tourPrefix}`,
     fullTourDetailURL: `${backendURL}/${tourPrefix}/details`,
     searchTourURL: `/${apiPrefix}/${tourPrefix}/${searchPrefix}`,
