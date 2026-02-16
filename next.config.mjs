@@ -22,7 +22,7 @@ const nextConfig = {
         const extraRedirects = [
             {
                 source: '/awesome-india-tours',
-                destination: '/india/tours',
+                destination: '/india',
                 permanent: true,
             }
         ]
