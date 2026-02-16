@@ -71,5 +71,8 @@
     }, {
         "old": "/tour-package/south-goa-tour-getaway",
         "new": "/india/goa/tours/south-goa-tour"
+    }, {
+      "old": "/awesome-india-tours",
+      "new": "india/tours"
     }
 ]

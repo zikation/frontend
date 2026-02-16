@@ -18,7 +18,15 @@ const nextConfig = {
                 destination: dest,
                 permanent: true, // 301
             }))
-        return tourRedirects
+
+        const extraRedirects = [
+            {
+                source: '/awesome-india-tours',
+                destination: '/india/tours',
+                permanent: true,
+            }
+        ]
+        return [...tourRedirects, ...extraRedirects]
     },
 
     async rewrites() {
