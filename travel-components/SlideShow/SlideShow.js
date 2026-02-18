@@ -23,20 +23,15 @@ export default function SlideShow({ slides = [], interval = 5000 }) {
     const currentSlide = slides[currentIndex]
 
     const renderPromoSlide = (slide) => (
-        <div className={styles.promoSlide}>
+        <Link href={slide.link} className={styles.promoSlide}>
             <img src={slide.image} alt={slide.title || "Slide"} className={styles.slideImage} />
             <div className={styles.overlay}>
                 {slide.title && <h2 className={styles.title}>{slide.title}</h2>}
                 {slide.subtitle && <h3 className={styles.subtitle}>{slide.subtitle}</h3>}
                 {slide.caption && <p className={styles.caption}>{slide.caption}</p>}
-                {slide.link && slide.linkText && (
-                <Link href={slide.link} className={styles.button}>
-                    {slide.linkText}
-                </Link>
-
-                )}
+                {slide.link && slide.linkText && (<p className={styles.button}>{slide.linkText}</p>)}
             </div>
-        </div>
+        </Link>
     )
 
     const renderTestimonialSlide = (slide) => (
