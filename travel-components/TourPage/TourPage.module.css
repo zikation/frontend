@@ -1,13 +1,11 @@
 .TourPage {
     width: 80vw;
     height: 80vh;
-    background-color: var(--sectionBackGroundColor);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
     overflow: auto;
     position: absolute;
     left: 10%;
@@ -42,7 +40,7 @@
     margin: 5px;
     border-radius: 0 0 10px 10px;
     border: 2px solid var(--lightColor);
-    background-color: var(--contentBackgroundColor);
+    background-color: var(--darkColor);
 }
 
 .TourBody li {
@@ -85,6 +83,7 @@
     cursor: pointer; 
     animation: floater 2s ease-in-out infinite alternate;
     z-index: 10;
+    border: 2px solid var(--linkColor);
 }
 
 .TourPriceFloaterLabel {
@@ -104,12 +103,12 @@
 @keyframes floater {
     0% {
         transform: translateX(-25%);
-        border-color: red; 
+        border-color: orange; 
         color: white;
     }
     50% { 
         border-color: yellow; 
-        color: red;
+        color: orange;
     }
     100% {
         transform: translateX(0%);
@@ -346,7 +345,7 @@
     width: 50%;
     height: auto;
     margin: 10px;
-    background-color: var(--sectionBackGroundColor);
+    background-color: var(--darkColor);
     text-align: center;
     border-radius: 10px;
     border-color: var(--lightColor);
@@ -354,12 +353,12 @@
 }
 
 .ShowAllTours a {
-    color: var(--lightFontColor);
+    color: var(--linkColor);
     transition: color 0.2s ease;
 }
 
 .ShowAllTours a:hover {
-    color: lightgray;
+    color: var(--linkHoverColor);
     text-decoration: underline;
 }
 
@@ -383,4 +382,8 @@
 
 .TourItineraryDetail {
     padding: 1rem;
+}
+
+.BackgroundImage {
+    filter: saturate(1.2) contrast(0.4);
 }

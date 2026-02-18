@@ -7,12 +7,11 @@
     overflow: auto;
     box-sizing: border-box;
       
-    background-color: var(--sectionBackGroundColor);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     padding: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .TourListPage h1 {
@@ -26,6 +25,7 @@
     justify-content: space-evenly;
     gap: 16px;
     padding: 2rem;
+    background-color: var(--darkColor);
 }
 
 .TourCard {
@@ -38,6 +38,7 @@
     max-width: 400px;
     margin: 10px;
     width: 100%;
+    border: 2px solid var(--linkColor);
 }
   
 .TourCard:hover {
@@ -121,6 +122,7 @@
     inset: 0;
     z-index: -1;
     overflow: hidden;
+    filter: saturate(1.2) contrast(0.4);
 }
 
 .BackgroundImage {

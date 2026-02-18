@@ -1,5 +1,6 @@
 import FullScreenOverlay from '@/travel-components/FullScreenOverlay/FullScreenOverlay'
 import ReactMarkdown from "react-markdown"
+import Image from "next/image"
 import styles from './FooterContentView.module.css'
 
 function FooterContentTitle({content}) {
@@ -36,6 +37,7 @@ export default function FooterContentView({content, onClose}) {
     return content ? (
         <FullScreenOverlay onClose={onClose}>
             <div className={styles.FooterContentView}>
+                <Image src='/zikation.png' alt='Zikation' width={300} height={300} />
                 <FooterContentTitle content={content} />
                 <FooterContentSections content={content} />
             </div>

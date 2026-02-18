@@ -1,8 +1,8 @@
 :root {
     --lightHoverColor: rgb(5, 5, 164);
     --lightFontColor: white;
-    --lightColor: rgb(105, 54, 181);
-    --darkColor: #480355;
+    --lightColor: #B4121B;
+    --darkColor: #000000;
     --darkHoverColor: #3203a0;
     --darkFontColor: white;
     --sectionBackGroundColor: rgba(0, 0, 0, 0.5);
@@ -11,6 +11,8 @@
     --pageBackGroundColor: #2e2c2c;
     --pageFontColor: white;
     --fontColor: white;
+    --linkColor: #DBA658;
+    --linkHoverColor: #C8954F;
 }
 
 .blueTheme {
@@ -53,9 +55,9 @@ html, body {
 }
 
 body a, a:visited, a:active {
-    color: pink;
+    color: var(--linkColor);
 }
 
 body a:hover {
-    color: palevioletred
+    color: var(--linkHoverColor);
 }

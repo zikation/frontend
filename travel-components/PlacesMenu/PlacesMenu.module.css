@@ -12,6 +12,7 @@
     overflow-y: auto;
     z-index: 999;
     text-align: center;
+    border: 2px solid var(--linkColor);
 }
 
 .PlacesMenuExpanded {
@@ -28,6 +29,7 @@
     max-height: 80vh;
     overflow-y: auto;
     z-index: 999;
+    border: 2px solid var(--linkColor);
 }
 
 .PlacesMenu a,

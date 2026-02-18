@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import TourPrice from './TourPrice'
-import { GetLowestPrice } from '@/utils/actions';
+import { GetLowestPrice, SendWhatsAppMessage } from '@/utils/actions';
 import styles from '../TourPage.module.css'
+import { useRouter } from 'next/router';
 
 function ShowContactForPrice() {
+    const router = useRouter()
     return (
-        <div className={styles.TourPriceFloater}>
+        <div className={styles.TourPriceFloater} onClick={() => SendWhatsAppMessage(router)}>
             <p className={styles.TourPriceCFP}>Contact for Price</p>
         </div>
     )
@@ -29,10 +31,7 @@ export default function TourPriceFloater({ tour }) {
                     <p className={styles.TourPriceFloaterLabel}>Starting From</p>
                     <p className={styles.TourPriceFloaterPrice}>₹{startingfrom}</p>
                     <p className={styles.TourPriceFloaterLabel}>Per Person</p>
-                </div> : <div className={styles.TourPriceFloater}>
-                    <p className={styles.TourPriceFloaterPrice}>Contact for Price</p>
-                </div>
-
+                </div> : <ShowContactForPrice />
             }
             {showDetails && <TourPrice tour={tour} onClose={toggleShowDetails} />}
         </>

@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import TourListPage from "@/travel-components/TourListPage/TourListPage"
 import backend from "@/utils/backend"
+import LoadingIndicator from "@/travel-components/LoadingIndicator/LoadingIndicator"
 
 export default function SearchPlace() {
     const router = useRouter()
@@ -36,7 +37,7 @@ export default function SearchPlace() {
     }, [router.isReady, searchQuery])
 
     if (!router.isReady) return <p>Initializing search...</p>
-    if (loading) return <p>{`Loading tours for "${searchQuery}"...`}</p>
+    if (loading) return <LoadingIndicator />
     if (error) return <p>Error: {error}</p>
     if (!results?.tours) return <p>{`No tours found for "${searchQuery}"`}</p>
 

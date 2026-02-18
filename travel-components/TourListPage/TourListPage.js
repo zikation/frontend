@@ -6,10 +6,6 @@ import { TourImage } from "./TourImage"
 import { BrandName } from "@/utils/constants"
 import TourSection from "../TourPage/internal/TourSection"
 
-function TourListPageHeading({h1}) {
-    return h1 ? <h1>{h1}</h1> : null
-}
-
 function TourListPageTitle({title}) {
     return <Head><title>{`${title} - ${BrandName}`}</title><meta property="og:title" content={title} /></Head>
 }
@@ -70,10 +66,9 @@ export default function TourListPage({ tours, location, sublocation = null, sear
             <FullScreenBackground bkgd={bkgd} place={place} />
             <main className={styles.TourListPage}>
                 <Head> <meta property="og:image" content={bkgd} /> </Head>
-                <TourListPageHeading h1={locationDesc?.seo.h1} />
                 <TourListPageTitle title={locationDesc?.seo.title ? locationDesc?.seo.title : title} />
                 <TourListPageMetaDesc metaDesc={locationDesc?.seo.metaDescription ? locationDesc?.seo.metaDescription : desc} />
-                <TourCards tours={tours} />
+                <TourSection title={locationDesc?.seo.title ? locationDesc?.seo.title : title} heading={true} content={<TourCards tours={tours} />}  type="component" />
                 <TourListPageSections content={locationDesc?.content} />
             </main>
         </div>
