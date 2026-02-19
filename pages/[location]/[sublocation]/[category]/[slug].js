@@ -53,5 +53,5 @@ export async function getStaticPaths() {
     } catch (error) {
         console.log('Error getting all slugs - using empty paths', error)
     }
-    return { paths: [], fallback: "blocking" }
+    return { paths, fallback: "blocking" }
 }
