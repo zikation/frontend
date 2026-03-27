@@ -55,7 +55,7 @@ html, body {
     justify-items: center;
 }
 
-body a, a:visited, a:active {
+body a, a:link, a:visited, a:active {
     color: var(--linkColor);
 }
 
