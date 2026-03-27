@@ -34,7 +34,7 @@
 
 .PlacesMenu a,
 .PlacesMenuExpanded a {
-    color: white;
+    color: var(--linkColor);
     text-decoration: none;
 }
   
