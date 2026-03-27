@@ -85,7 +85,7 @@ export default function PlacesMenu() {
     useEffect(() => {
         async function GetPlacesMenu() {
             try {
-                const res = await fetch(`${backend.staticMenuURL}`)
+                const res = await fetch(`${backend.runtimeMenuURL}`)
                 if (!res.ok) throw new Error("Failed to fetch menu")
                 const data = await res.json()
                 if (data.str) throw new Error(data.str)
