@@ -22,13 +22,14 @@ const backend = {
     staticAllCategories: `${staticAllPrefix}/location-sublocation-category`,
     staticAllLocations: `${staticAllPrefix}/locations`,
     staticAllSublocations: `${staticAllPrefix}/sublocations`,
-    staticMenuURL: `${staticAllPrefix}/menuitems`,
+    // staticMenuURL: `${staticAllPrefix}/menuitems`,
 
     runtimeTourURL: `/${apiPrefix}/${tourPrefix}`,
     runtimeTrekURL: `/${apiPrefix}/${trekPrefix}`,
     runtimeOrderURL: `/${apiPrefix}/${orderPrefix}/new`,
     runtimeTagsURL: `/${apiPrefix}/all/tags`,
     runtimeSearchURL: `/${apiPrefix}/all/${searchPrefix}`,
+    runtimeMenuURL: `/${apiPrefix}/all/menuitems`,
 }
 
 export default backend
