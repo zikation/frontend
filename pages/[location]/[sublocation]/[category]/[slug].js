@@ -1,31 +1,34 @@
-import RedirectOnError from "@/travel-components/Error/RedirectOnError"
-import TourPage from "@/travel-components/TourPage/TourPage"
+import RedirectOnError from "@/components/common/Error/RedirectOnError"
+import TourPage from "@/components/tours/TourPage/TourPage"
+import TrekPage from "@/components/treks/TrekPage/TrekPage"
 import backend from "@/utils/backend"
 import { handleInvalidLocationPair, isValidLocationPair } from "@/utils/PlacesMenuDetails"
 
-export default function TourSlug({ data }) {
+export default function TourSlug({ data, category }) {
     if (data.err || !data.success)
-        return <RedirectOnError message={data.str} />
-    return <TourPage tour={data} />
+        return <RedirectOnError message={data.msg} />
+    return (category === 'tours') ? <TourPage tour={data} category={category} /> : <TrekPage trek={data} category={category} />
 }
 
 export async function getStaticProps(context) {
-    const { location, sublocation, slug } = context.params
+    const { location, sublocation, category, slug } = context.params
+
+    const prefix = (category === 'tours') ? `${backend.staticTourPrefix}` : `${backend.staticTrekPrefix}`
+    const errorText = 'Could not get the details'
     try {
-        const res = await fetch(`${backend.fullTourDetailURL}/${slug}`);
+        const res = await fetch(`${prefix}/${slug}`)
+        const detail = await res.json()
         if (!res.ok)
-            return { props: {data: {err: res.status, str: "Could not get the tour details" }}}
+            return { props: {data: {err: res.status, msg: errorText }}}
 
         // Is this pair valid?
         if (!isValidLocationPair(location, sublocation)) {
-            return handleInvalidLocationPair(location, sublocation, 'tours', slug)
+            return handleInvalidLocationPair(location, sublocation, category, slug)
         }
 
-        const data = await res.json()
-
         // Check if tour's location / sublocation matches the URL
-        if (location !== data.location || sublocation !== data.sublocation) {
-            let destinationURL = `/${data.location}/${data.sublocation}/tours/${slug}`
+        if (location !== detail.location || sublocation !== detail.sublocation) {
+            let destinationURL = `/${detail.location}/${detail.sublocation}/${category}/${slug}`
             return {
                 redirect: {
                     destination: destinationURL,
@@ -33,25 +36,31 @@ export async function getStaticProps(context) {
                 }
             }
         }
-        return { props: {data}, revalidate: 3600}
+        return { props: {data: detail, category, background: detail.bkgd}, revalidate: 3600}
     } catch (error) {
         console.error('ERROR!! Could not get slugs: ', error)
-        return { props: {data: {err: 500, str: "Could not get the tour details" }}}
+        return { props: {data: {err: 500, msg: errorText }}}
     }
 }
 
 export async function getStaticPaths() {
     let paths = []
-    try {
-        const res = await fetch(`${backend.fullTourURL}/all-tours`) // TODO: Should be all-slugs
-        const slugs = await res.json()
-        if (!slugs) return
+    const errorText = 'Error getting all slugs'
 
-        paths = slugs.tours.map(({ location, sublocation, slug }) => ({
-            params: { location, sublocation, slug, category: "tours" }, // TODO: Fix this when other categories are added
+    try {
+        const res = await fetch(`${backend.staticAllSlugs}`)
+        const data = await res.json()
+        if (!res.ok || !data) {
+            console.error('ERROR: ' + errorText)
+            console.error(data.msg)
+            return { paths: [], fallback: 'blocking' }
+        }
+
+        paths = data.slugs.map(({ location, sublocation, category, slug }) => ({
+            params: { location, sublocation, slug, category }
         }))
     } catch (error) {
-        console.log('Error getting all slugs - using empty paths', error)
+        console.log(`${errorText}: ${error}`)
     }
     return { paths, fallback: "blocking" }
 }

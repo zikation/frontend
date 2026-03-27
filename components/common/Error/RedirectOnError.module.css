@@ -1,0 +1,32 @@
+.ErrorBox {
+    background: var(--darkColor);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 90%;
+    width: 320px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-width: 2px;
+    border-color: var(--contentFontColor);
+    border-style: dashed;
+}
+
+.ErrorMessage {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--contentFontColor);
+}
+  
+.ErrorButton {
+    background-color: var(--lightColor);
+    color: var(--contentFontColor);
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.ErrorButton:hover {
+    background-color: var(--lightHoverColor);
+}

@@ -1,25 +1,25 @@
 {
-  "name": "travel-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "prebuild": "bash scripts/sync-content-images.sh",
-    "predev": "bash scripts/sync-content-images.sh",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-markdown": "^10.1.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/debug": "^4.1.12",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.4"
-  }
+    "name": "travel-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "prebuild": "bash scripts/sync-content-images.sh",
+        "predev": "bash scripts/sync-content-images.sh",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint"
+    },
+    "dependencies": {
+        "next": "^16.1.6",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "react-markdown": "^10.1.0"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/debug": "^4.1.12",
+        "eslint": "^9",
+        "eslint-config-next": "15.5.4"
+    }
 }

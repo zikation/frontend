@@ -1,0 +1,142 @@
+.BookTrek {
+    width: 80%;
+    height: 80%;
+    background-color: var(--sectionBackGroundColor);
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
+
+.BookTrek h2 {
+    justify-self: center;
+}
+
+.BookTrek p {
+    width: 50%;
+    justify-self: center;
+}
+
+.BookTrek form {
+    width: 50%;
+    justify-self: center;
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.BookTrek textarea {
+    width: 80%;
+    justify-self: center;
+    padding: 10px;
+    margin: 20px;
+    font-family: inherit;
+}
+
+.WhatsAppButton {
+    position: relative;
+    padding: 10px;
+    border-radius: 16px;
+    background: #0f0f12;
+    color: #fff;
+    font: 600 16px/1.4 system-ui, sans-serif;
+    isolation: isolate;
+    width: 60%;
+    display: block;
+    margin: 20px auto;
+}
+
+.BookTrek a {
+    color: white;
+}
+
+.BookTrekButton {
+    position: relative;
+    padding: 10px;
+    border-radius: 16px;
+    background: #0f0f12;
+    color: #fff;
+    font: 600 16px/1.4 system-ui, sans-serif;
+    isolation: isolate;
+    justify-self: center;
+    width: 40%;
+}
+
+/* Main rotating border */
+.BookTrekButton::before,
+.WhatsAppButton::before {
+    content: "";
+    position: absolute;
+    inset: -3px; /* border thickness */
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0040, #ff7a00, #ffd400, #31d843, #00c2ff, #7a5cff, #ff33cc, #ff0040
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    padding: 3px;
+    z-index: -1;
+    animation: spin 3s linear infinite;
+    transition: filter 0.3s ease;
+}
+  
+/* Glowing blurred copy */
+.BookTrekButton::after,
+.WhatsAppButton::after {
+    content: "";
+    position: absolute;
+    inset: -6px; /* spread beyond border */
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0040, #ff7a00, #ffd400, #31d843, #00c2ff, #7a5cff, #ff33cc, #ff0040
+    );
+    filter: blur(20px); /* the actual glow */
+    opacity: 0;         /* hidden by default */
+    z-index: -2;        /* behind everything */
+    animation: spin 3s linear infinite;
+    transition: opacity 0.3s ease;
+}
+
+.BookTrekButton:disabled::before,
+.WhatsAppButton:disabled::after {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.BookTrekButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+    
+  /* Animatable gradient angle */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+  
+@keyframes spin {
+    to { --angle: 360deg; }
+}
+  
+/* Show the glow on hover */
+.BookTrekButton:hover::after,
+.WhatsAppButton:hover::after {
+    opacity: 1;
+}
+
+
+.FullScreenBackground {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}

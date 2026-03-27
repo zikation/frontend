@@ -1,5 +1,5 @@
-import FullScreenOverlay from "@/travel-components/FullScreenOverlay/FullScreenOverlay"
 import Link from "next/link"
+import FullScreenOverlay from "@/components/common/FullScreenOverlay/FullScreenOverlay"
 
 export default function Custom404() {
     return (
@@ -11,6 +11,6 @@ export default function Custom404() {
                 <p>In any case, you can search for tours in our homepage.</p>
                 <Link href='/'><strong>Go to Homepage</strong></Link>
             </div>
-         </FullScreenOverlay>
+        </FullScreenOverlay>
     )
 }

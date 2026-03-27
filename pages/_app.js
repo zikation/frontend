@@ -1,21 +1,21 @@
-import "@/styles/TravelApp.css"
-import Header from "../travel-components/Header/Header"
-import Footer from "../travel-components/Footer/Footer"
-import PlacesMenu from "@/travel-components/PlacesMenu/PlacesMenu"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { ChatOnWhatsApp } from "@/travel-components/ChatOnWhatsApp/ChatOnWhatsApp"
-import GoogleAnalytics from '@/travel-components/analytics/GoogleAnalytics'
 import { useEffect, useState } from 'react'
-import LoadingIndicator from '@/travel-components/LoadingIndicator/LoadingIndicator'
+import { BrandName } from "@/utils/constants"
+import LoadingIndicator from '@/components/common/LoadingIndicator/LoadingIndicator'
+import GoogleAnalytics from '@/components/common/analytics/GoogleAnalytics'
+import SiteLayout from "@/components/layout/SiteLayout/SiteLayout"
+import BackgroundToggle from "@/components/common/BkgdImage/BackgroundToggle"
+import FullScreenBackground from "@/components/common/BkgdImage/FullScreenBackground"
+import "@/styles/TravelApp.css"
 
-function AddSEOForPage({isNoIndexPage}) {
+const AddSEOForPage = ({isNoIndexPage}) => {
     return (
         <Head> <meta name="robots" content={isNoIndexPage ? "noindex, follow" : "index, follow"}  /></Head>
     )
 }
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const isNoIndexPage = router.pathname.startsWith("/book") || router.pathname.startsWith("/search")
@@ -35,16 +35,19 @@ export default function App({ Component, pageProps }) {
         }
     }, [router])
 
+    const background = pageProps.background || Component.background
+    const [showBackgroundOnly, setShowBackgroundOnly] = useState(false)
+
     return (
-        <>
+        <div className={showBackgroundOnly ? "immersive" : ""}>
             <GoogleAnalytics id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
             <AddSEOForPage isNoIndexPage={isNoIndexPage} />
             <LoadingIndicator loading={loading} />
-            <Header />
-            <PlacesMenu />
-            <Component {...pageProps} />
-            <ChatOnWhatsApp />
-            <Footer />
-        </>
+            <FullScreenBackground bkgd={background?.path ? background.path : background} alt={background?.alt ? background.alt : BrandName} />
+            <BackgroundToggle showBackgroundOnly={showBackgroundOnly} onToggle={() => setShowBackgroundOnly(prev => !prev)} />
+            {!showBackgroundOnly && (<SiteLayout><Component {...pageProps} /></SiteLayout>)}
+        </div>
     )
 }
+
+export default App

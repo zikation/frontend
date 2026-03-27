@@ -9,3 +9,5 @@ export const InstagramURL = "https://instagram.com/zikation"
 export const xURL = "https://x.com/zikationindia"
 export const YouTubeURL = "#"
 export const DefaultImage = "/images/default-tour.jpg"
+export const DefaultTourImage = "/images/default-tour.jpg"
+export const LogoImage = '/logo/zikation.png'

@@ -1,70 +1,44 @@
+import ListPage from '@/components/common/ListPage/ListPage'
 import backend from '@/utils/backend'
-import TourListPage from '@/travel-components/TourListPage/TourListPage'
-import { GetTours } from '@/utils/actions'
-import RedirectOnError from '@/travel-components/Error/RedirectOnError'
 
-/* For now, we list only tours */
-export default function LocationListingPage({ tours, location, error, locationDesc }) {
-    if (error)
-        return <RedirectOnError />
-    return <TourListPage tours={tours} location={location} locationDesc={locationDesc} />
-}
-
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
     let paths = []
     try {
-        const res = await fetch(`${backend.fullTourURL}/all-locations`)
-        const {locations} = await res.json()
+        const res = await fetch(`${backend.staticAllLocations}`)
+        const data = await res.json()
 
-        paths = locations.map(loc => ({
-            params: { location: loc }
+        paths = data.result.map(loc => ({
+            params: { location: loc.location }
         }))
     } catch (error) {
-        console.log("Error getting all locations - using empty paths", error)
+        console.error(`Error getting all locations - using empty paths: ${error}`)
     }
 
-    return {
-        paths,
-        fallback: "blocking"
-    }
+    return { paths, fallback: "blocking" }
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
     const { location } = params
-    const url = backend.fullGetLocationURL + '/' + location.toLowerCase()
+    const bkgd = '/tourhub/images/' + location + '.webp'
     try {
-        var res = await fetch(`${backend.validateURL}?location=${location}`)
-        if (res.status === 404)
+        const res = await fetch(`${backend.staticAllPrefix}/${location}`)
+        const data = await res.json()
+        if (!data || !Array.isArray(data.result) || data.result.length === 0) 
             return {notFound: true}
 
-        var data = await GetTours(url, "Could not get the tours for " + location)
-        if (!data.location || !data.tours || !Array.isArray(data.tours))
-            return {notFound: true}
-        
-        var tours = data.tours
         return {
-            props: {
-            location,
-            locationDesc: data.location,
-            tours: tours.map(t=>({
-                        price: t.price,
-                        location: t.location,
-                        sublocation: t.sublocation,
-                        slug: t.slug,
-                        price: t.price ?? null,
-                        bkgd: t.bkgd,
-                        title: t.title,
-                        summary: t.summary
-                    }))
-            },
+            props: { location, categories: data.result, background: bkgd },
             revalidate: 60 * 60
         }
     } catch (error) {
-        console.log("Error while generating ", location, error)
+        console.log(`Error while generating page for ${location}: ${error}`)
         return {
-            props: {
-                location, error: true, tours: []
-            }, revalidate: 60 * 60
+            props: { location, categories: [] }, 
+            revalidate: 60 * 60
         }
     }
 }
+
+const LocationListingPage = ({ categories, location, locationDesc }) => <ListPage location={location} categories={categories} hub={locationDesc} />
+
+export default LocationListingPage

@@ -1,16 +1,16 @@
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import RedirectOnError from "@/travel-components/Error/RedirectOnError"
-import { SendGAEvent, SendWhatsAppMessage } from "@/utils/actions"
+import RedirectOnError from "@/components/common/Error/RedirectOnError"
+import SendWhatsAppMessage from "@/components/layout/ChatOnWhatsApp/WAUtils"
+import SendGAEvent from "@/components/common/analytics/GAUtils"
 import { Email } from '@/utils/constants'
 import backend from "@/utils/backend"
+import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator"
 import styles from './BookTour.module.css'
-import Image from "next/image"
-import LoadingIndicator from "@/travel-components/LoadingIndicator/LoadingIndicator"
 
-export default function BookTourPage() {
+const BookTourPage = () => {
     const router = useRouter()
-    const { slug, priceid, location, sublocation } = router.query
+    const { slug, priceid} = router.query
     const [tour, setTour] = useState(null)
     const [price, setPrice] = useState(null)
     const [error, setError] = useState(null)
@@ -19,35 +19,43 @@ export default function BookTourPage() {
     const [ordering, setOrdering] = useState(false)
 
     useEffect(() => {
-        if (!slug || !priceid) return
-
-        fetch(`${backend.fullTourDetailURL}/${slug}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.err)
-                    return setError(data.str)
+        if (!slug) return
+    
+        const fetchTour = async () => {
+            try {
+                setLoading(true)
+                const res = await fetch(`${backend.runtimeTourURL}/${slug}`)
+                const data = await res.json()
+    
+                if (data?.err) {
+                    setError(data?.str)
+                    return
+                }
+    
                 setTour(data)
                 const customPrice = data.price?.custom?.find(p => p._id === priceid)
                 const groupPrice = data.price?.group?.find(p => p._id === priceid)
                 setPrice(customPrice || groupPrice || null)
-            })
-            .catch(err => {
-                var message = 'Could not get tour details: ' + err
+            } 
+            catch (err) {
+                const message = `Could not get tour details: ${err}`
                 setError(message)
-            })
-            .finally(() => setLoading(false))
-    }, [slug, priceid, location, sublocation])
-
-    const url = `/${location}/${sublocation}/tours/${slug}`
-    if (error)
-        return <RedirectOnError message={error} url={url} buttonText='Go to Tour Page' />
+            } 
+            finally {
+                setLoading(false)
+            }
+        }
+    
+        fetchTour()
+    }, [slug, priceid])
 
     if (loading)
         return <LoadingIndicator />
 
-    if (!tour)
+    if (error || !tour)
         return <RedirectOnError message='Oops! Something went wrong' buttonText='Go to Home Page' />
-
+    
+    const url = `/${tour.location}/${tour.sublocation}/tours/${slug}`
     if (!price)
         return <RedirectOnError message='Oops! Something went wrong' url={url} buttonText='Go to Tour Page' />
 
@@ -71,8 +79,8 @@ const handleSubmit = async (e, setError, setSuccess, setOrdering, booking, formL
     }
 
     try {
-        const res = await fetch(backend.orderURL, {
-            method: "PUT",
+        const res = await fetch(backend.runtimeOrderURL, {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 text: booking,
@@ -84,7 +92,7 @@ const handleSubmit = async (e, setError, setSuccess, setOrdering, booking, formL
         if (data.err)
             setError(data.str)
         else {
-            setSuccess(data.success)
+            setSuccess(data.msg)
             SendGAEvent('generate_lead', {
                 event_category: 'engagement',
                 event_label: 'tour_enquiry',
@@ -98,7 +106,7 @@ const handleSubmit = async (e, setError, setSuccess, setOrdering, booking, formL
     }
 }
 
-function BookTourForm({ tour, price, ordering, setError, setSuccess, setOrdering }) {
+const BookTourForm = ({ tour, price, ordering, setError, setSuccess, setOrdering }) => {
     const formattedDate = new Date(price.batch?.date).toLocaleDateString('en-IN', {
         year: 'numeric', month: 'long', day: 'numeric'
     })
@@ -131,7 +139,6 @@ function BookTourForm({ tour, price, ordering, setError, setSuccess, setOrdering
     const bookingFormRef = useRef(null)
     const [booking, setBooking] = useState(prefix.join('\n'))
     const [formLoadedAt, setFormLoadedAt] = useState(Date.now())
-    const bkgd = '/background/booktour.webp'
 
     useEffect(() => {
         if (bookingFormRef.current) {
@@ -141,54 +148,33 @@ function BookTourForm({ tour, price, ordering, setError, setSuccess, setOrdering
     }, [prefix])
 
     return (
-        <div className={styles.BookTourWrapper}>
-            <div className={styles.FullScreenBackground}>
-                <Image
-                    src={bkgd}
-                    fill
-                    alt="Booking Form"
-                    priority
-                    sizes="100vw"
-                    className={styles.BackgroundImage}
-                />
-            </div>
-            <main className={styles.BookTour}>
-                <h2>Booking {tour.title}</h2>
-                <p>
-                    We do not have booking/payment integrated yet into our website. 
-                    Please fill the form so that we can get in touch with you, and guide you on booking the tour.
-                    Alternatively, you can send an email to us at <a href={`mailto:${Email}`}>{Email}</a>
-                </p>
+        <div className={styles.BookTour}>
+            <h2>Booking {tour.title}</h2>
+            <p>
+                We do not have booking/payment integrated yet into our website. 
+                Please fill the form so that we can get in touch with you, and guide you on booking the tour.
+                Alternatively, you can send an email to us at <a href={`mailto:${Email}`}>{Email}</a>
+            </p>
 
-                <form onSubmit={e => handleSubmit(e, setError, setSuccess, setOrdering, booking, formLoadedAt)}>
-                    {/* 🕳️ Honeypot Field (hidden from users) */}
-                    <input
-                        type="text"
-                        name="honeypot"
-                        autoComplete="off"
-                        tabIndex="-1"
-                        style={{ position: "absolute", left: "-9999px", opacity: 0 }}
-                    />
+            <form onSubmit={e => handleSubmit(e, setError, setSuccess, setOrdering, booking, formLoadedAt)}>
+                {/* 🕳️ Honeypot Field (hidden from users) */}
+                <input type="text" name="honeypot" autoComplete="off" tabIndex="-1"
+                    style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
 
-                    {/* 🕒 Hidden timestamp field */}
-                    <input type="hidden" name="formLoadedAt" value={formLoadedAt} />
+                {/* 🕒 Hidden timestamp field */}
+                <input type="hidden" name="formLoadedAt" value={formLoadedAt} />
 
-                    <textarea
-                        className={styles.BookingFormTextArea}
-                        ref={bookingFormRef}
-                        value={booking}
-                        rows="10"
-                        cols="50"
-                        onChange={(e) => setBooking(e.target.value)}
-                        name="text"
-                    />
-                    <br />
-                    <button className={styles.BookTourButton} type="submit" disabled={ordering}>
-                        Submit
-                    </button>
-                </form>
-                <button className={styles.WhatsAppButton} onClick={() => {SendWhatsAppMessage(null, booking)}}>Message on WhatsApp</button>
-            </main>
+                <textarea className={styles.BookingFormTextArea} ref={bookingFormRef}
+                    value={booking} rows="10" cols="50" name="text"
+                    onChange={(e) => setBooking(e.target.value)} />
+                <br />
+                <button className={styles.BookTourButton} type="submit" disabled={ordering}>Submit</button>
+            </form>
+            <button className={styles.WhatsAppButton} onClick={() => {SendWhatsAppMessage(null, booking)}}>Message on WhatsApp</button>
         </div>
     )
 }
+
+BookTourPage.background = '/images/booktour.webp'
+
+export default BookTourPage

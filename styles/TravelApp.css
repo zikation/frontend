@@ -1,9 +1,9 @@
 :root {
-    --lightHoverColor: rgb(5, 5, 164);
+    --lightHoverColor: #DBA658;
     --lightFontColor: white;
     --lightColor: #B4121B;
     --darkColor: #000000;
-    --darkHoverColor: #3203a0;
+    --darkHoverColor: #DBA658;
     --darkFontColor: white;
     --sectionBackGroundColor: rgba(0, 0, 0, 0.9);
     --contentBackgroundColor: rgba(0, 0, 0, 0.6);
@@ -25,15 +25,16 @@
     --darkColor: #27010c;
 }
 
+#__next {
+    position: relative;
+    z-index: 1;
+}
+
 html, body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100%;
     font-family: 'Calibri', 'Arial', sans-serif;
-    background-color: var(--pageBackGroundColor);
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: none;
     color: var(--pageFontColor);
     text-align: justify;
     user-select: none;

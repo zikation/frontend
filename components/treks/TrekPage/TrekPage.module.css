@@ -1,0 +1,312 @@
+.ShowAllTreks {
+    display: block;
+    margin-top: 1rem;
+    color: var(--linkColor);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: 50%;
+    height: auto;
+    margin: 10px auto;
+    background-color: var(--darkColor);
+    text-align: center;
+    border-radius: 10px;
+    border-color: var(--lightColor);
+    border: 2px solid var(--lightColor);
+}
+
+.ShowAllTreks a {
+    color: var(--linkColor);
+    transition: color 0.2s ease;
+}
+
+.ShowAllTreks a:hover {
+    color: var(--linkHoverColor);
+    text-decoration: underline;
+}
+
+.TrekPage {
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    overflow: auto;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    z-index: 1;
+}
+
+.TrekPriceFloater {
+    top: 25%;
+    right: 0;
+    position: fixed;
+    background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 15%;
+    border-radius: 10px;
+    cursor: pointer; 
+    animation: floater 2s ease-in-out infinite alternate;
+    z-index: 10;
+    border: 2px solid var(--linkColor);
+}
+
+.TrekPriceFloaterLabel {
+    font-size: x-small;
+}
+
+.TrekPriceFloaterPrice {
+    font-size: clamp(1rem, 5vw, 2.5rem); 
+    margin: 0;
+}
+
+.TrekPriceCFP {
+    font-size: medium;
+    margin: 10px;
+}
+
+@keyframes floater {
+    0% {
+        transform: translateX(-25%);
+        border-color: orange; 
+        color: white;
+    }
+    50% { 
+        border-color: yellow; 
+        color: orange;
+    }
+    100% {
+        transform: translateX(0%);
+        border-color: white; 
+        color: yellow;
+    }
+}
+
+.TrekPrice {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    overflow-y: auto;
+    background-color: var(--contentBackgroundColor);
+    padding: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    justify-items: center;
+    border-radius: 10px;
+}
+
+.TrekPriceCrossButton {
+    position: sticky;
+    top: 0.5rem;
+    margin-left: auto;
+    align-self: flex-start; 
+    font-size: xx-large;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    transition: transform 0.6s ease;
+}
+
+@media (hover: hover) {
+    .TrekPriceCrossButton:hover {
+        transform: rotate(360deg);
+    }
+  }
+
+.TrekPriceMenu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.PriceInactiveMenu {
+    width: 33%;
+    cursor: pointer;
+    text-align: center;
+    border-width: 1px;
+    border-style:solid;
+    border-color: var(--darkColor);
+    background-color: var(--lightColor);
+    
+}
+
+.PriceActiveMenu {
+    width: 33%;
+    cursor: pointer;
+    text-align: center;
+    border-width: 1px;
+    border-style:solid;
+    border-color: var(--lightColor);
+    background-color: var(--darkColor);
+}
+
+.TrekPriceDetails {
+    width: 95%;
+    margin: 1em;
+    align-items: center;
+    justify-items: center;
+    border-width: 1px;
+    border-style:solid;
+    border-color: var(--lightColor);
+    padding: 1rem;
+    background-color: var(--contentBackgroundColor);
+    opacity: 0.8;
+}
+
+.GetAllPriceTable {
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.GetAllPriceTable th {
+    border-style:solid;
+    border-color: var(--darkColor);
+    padding: 1rem;
+    background-color: var(--lightColor);
+    border-width: 1px;
+    font-weight: bold;
+}
+
+.PriceMenuDetailActive {
+    background-color: var(--darkColor);
+    border-color: var(--lightColor);
+    border-width: 1px;
+    border-style:solid;
+}
+
+.PriceMenuDetailInactive {
+    background-color: var(--lightColor);
+}
+
+.PriceLink p {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.PriceBatchDetails {
+    width: 95%;
+    border-style:solid;
+    border-color: var(--lightColor);
+    padding: 1rem;
+    background-color: var(--contentBackgroundColor);
+    border-width: 1px;
+}
+
+.OptionalPackage {
+    width: 100%;
+    border-color: var(--lightColor);
+    padding: 1rem;
+    background-color: var(--contentBackgroundColor);
+}
+
+.OptionalPackage td {
+    border-style:solid;
+    border-color: var(--lightColor);
+    padding: 1rem;
+    background-color: var(--contentBackgroundColor);
+    border-width: 1px;
+}
+
+.PriceStrikeThrough {
+    text-decoration: line-through;
+}
+
+.FinalPrice {
+    font-size: x-large;
+}
+
+.BookNow {
+    position: relative;
+    padding: 10px;
+    border-radius: 16px;
+    background: #0f0f12;
+    color: #fff;
+    font: 600 16px/1.4 system-ui, sans-serif;
+    isolation: isolate;
+}
+  
+/* Main rotating border */
+.BookNow::before {
+    content: "";
+    position: absolute;
+    inset: -3px; /* border thickness */
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0040, #ff7a00, #ffd400, #31d843, #00c2ff, #7a5cff, #ff33cc, #ff0040
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    padding: 3px;
+    z-index: -1;
+    animation: spin 3s linear infinite;
+    transition: filter 0.3s ease;
+}
+  
+/* Glowing blurred copy */
+.BookNow::after {
+    content: "";
+    position: absolute;
+    inset: -6px; /* spread beyond border */
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0040, #ff7a00, #ffd400, #31d843, #00c2ff, #7a5cff, #ff33cc, #ff0040
+    );
+    filter: blur(20px); /* the actual glow */
+    opacity: 0;         /* hidden by default */
+    z-index: -2;        /* behind everything */
+    animation: spin 3s linear infinite;
+    transition: opacity 0.3s ease;
+}
+  
+  /* Animatable gradient angle */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+  
+@keyframes spin {
+    to { --angle: 360deg; }
+}
+  
+/* Show the glow on hover */
+.BookNow:hover::after {
+    opacity: 1;
+}
+
+
+.TrekPageContent {
+    position: relative;
+    z-index: 1;
+}
+
+.TrekPageWrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.TrekItineraryDetail {
+    padding: 1rem;
+}

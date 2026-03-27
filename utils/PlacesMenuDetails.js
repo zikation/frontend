@@ -129,7 +129,7 @@ export function isValidLocationPair(location, sublocation) {
     if (!location) return false
   
     const loc = PlacesMenuDetails[location]
-    if (!loc) return false;
+    if (!loc) return false
   
     if (!sublocation) return true // top-level location page is valid
   
@@ -154,5 +154,4 @@ export function handleInvalidLocationPair(location, sublocation, category=null, 
             }
         }
     }
-    
 }

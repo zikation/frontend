@@ -33,35 +33,38 @@
       "old": "/tour-package/kerala-tour",
       "new": "/india/kerala/tours/kochi-munnar-thekkady-alleppey-tour"
     }, {
-      "old": "/tour-package/truly-meghalaya-tour-package-from-guwahati",
-      "new": "/india/meghalaya/tours/shillong-cherrapunji-dawki-tour"
+        "old": "/tour-package/truly-meghalaya-tour-package-from-guwahati",
+        "new": "/india/meghalaya/tours/shillong-cherrapunji-dawki-tour"
+    }, {
+        "old": "/tour-package/meghalaya-kaziranga-tour-from-guwahati/",
+        "new": "/india/meghalaya/tours/shillong-cherrapunji-dawki-tour"
     }, {
       "old": "/tour-package/beauty-of-kashmir-group-tour-from-srinagar",
       "new": "/india/jammu-and-kashmir/tours/kashmir-tour"
     }, {
       "old": "/tour-package/dwarka-and-somnath-tour-from-ahmedabad",
-      "new": "/india/gujarat/tours/dwarka-somnath-tour"
+      "new": "/india/gujarat/tours/dwarka-somnath-temple-tour"
     }, {
       "old": "/tour-package/saurashtra-tour-gujarat-from-ahmedabad",
-      "new": "/india/gujarat/tours/saurashtra-tour-package"
+      "new": "/india/gujarat/tours/saurashtra-tour-with-gir-and-diu"
     }, {
       "old": "/tour-package/tour-to-diu-and-saurashtra-from-ahmedabad",
-      "new": "/india/gujarat/tours/saurashtra-tour-package"
+      "new": "/india/gujarat/tours/saurashtra-tour-with-gir-and-diu"
     }, {
       "old": "/tour-package/rann-of-kutch-group-tour-from-mumbai",
-      "new": "/india/gujarat/tours/rann-of-kutch-package"
+      "new": "/india/gujarat/tours/rann-of-kutch-tour"
     }, {
       "old": "/tour-package/trip-to-bhuj-from-ahmedabad",
-      "new": "/india/gujarat/tours/rann-of-kutch-package"
+      "new": "/india/gujarat/tours/rann-of-kutch-tour"
     }, {
       "old": "/tour-package/weekend-tour-to-rann-of-kutch-from-ahmedabad",
-      "new": "/india/gujarat/tours/rann-of-kutch-package"
+      "new": "/india/gujarat/tours/rann-of-kutch-tour"
     }, {
       "old": "/tour-package/trip-to-kutch-from-ahmedabad",
-      "new": "/india/gujarat/tours/rann-of-kutch-package"
+      "new": "/india/gujarat/tours/rann-of-kutch-tour"
     }, {
       "old": "/tour-package/rann-of-kutch-tour-from-ahmedabad",
-      "new": "/india/gujarat/tours/rann-of-kutch-package"
+      "new": "/india/gujarat/tours/rann-of-kutch-tour"
     }, {
         "old": "/tour-package/amazing-goa-tour-package",
         "new": "/india/goa/tours/offbeat-goa-tour"
@@ -72,7 +75,88 @@
         "old": "/tour-package/south-goa-tour-getaway",
         "new": "/india/goa/tours/south-goa-tour"
     }, {
-      "old": "/awesome-india-tours",
-      "new": "india/tours"
+        "old": "/awesome-india-tours",
+        "new": "/india/tours"
+    }, {
+        "old": "/tour-packages/trekking-in-kashmir",
+        "new": "/india/jammu-and-kashmir/treks"
+    }, {
+        "old": "/tour-package/weekend-at-chikmagalur-tour-package",
+        "new": "/india/karnataka/tours/chikmagalur-tour"
+    }, {
+        "old": "/tour-package/chikmagalur-over-long-weekend",
+        "new": "/india/karnataka/tours/chikmagalur-tour"
+    }, {
+        "old": "/tour-package/weekend-at-chikmagalur",
+        "new": "/india/karnataka/tours/chikmagalur-tour"
+    }, {
+        "old": "/tour-package/tosamaidan-greater-lakes-trek-kashmir",
+        "new": "/india/jammu-and-kashmir/treks/tosamaidan-greater-lakes-trek"
+    }, {
+        "old": "/tour-package/hampi-group-tour",
+        "new": "/india/karnataka/tours/hampi-tour"
+    }, {
+        "old": "/tour-package/private-tour-to-hampi-and-chitradurga",
+        "new": "/india/karnataka/tours/hampi-tour"
+    }, {
+        "old": "/tour-package/hampi-badami-tour/",
+        "new": "/india/karnataka/tours/hampi-badami-tour"
+    }, {
+        "old": "/tour-package/kashmir-great-lakes-trek",
+        "new": "/india/jammu-and-kashmir/treks/kashmir-great-lakes-trek"
+    }, {
+        "old": "/tour-package/tarsar-marsar-trek-kashmir",
+        "new": "/india/jammu-and-kashmir/treks/tarsar-marsar-trek"
+    }, {
+        "old": "/tour-package/wayanad-tour-from-bangalore",
+        "new": "/india/kerala/tours/wayanad-tour"
+    }, {
+        "old": "/tour-package/udupi-karkala-group-tour",
+        "new": "/india/karnataka/tours/udupi-tour"
+    }, {
+        "old": "/tour-package/coastal-karnataka",
+        "new": "/india/karnataka/tours/coastal-karnataka-tour"
+    }, {
+        "old": "/tour-package/mysore-and-coorg-tour-from-bangalore",
+        "new": "/india/karnataka/tours/mysore-coorg-tour"
+    }, {
+        "old": "/tour-package/long-weekend-tour-to-coorg-from-mangalore",
+        "new": "/india/karnataka/tours/mysore-coorg-tour"
+    }, {
+        "old": "/tour-package/weekend-tour-to-coorg-from-mangalore",
+        "new": "/india/karnataka/tours/mysore-coorg-tour"
+    }, {
+        "old": "/tour-package/mysore-coorg-tour-package-long-weekend",
+        "new": "/india/karnataka/tours/mysore-coorg-tour"
+    }, {
+        "old": "/tour-package/gokarna-from-mangalore",
+        "new": "/india/karnataka/tours/gokarna-tour"
+    }, {
+        "old": "/tour-package/gokarna-karwar-tour-from-mangalore",
+        "new": "/india/karnataka/tours/gokarna-tour"
+    }, {
+        "old": "/tour-package/lakshadweep-tour-packages",
+        "new": "/india/lakshadweep/tours"
+    }, {
+        "old": "/tour-package/splendid-sikkim-tour-from-siliguri",
+        "new": "/india/sikkim/tours/sikkim-darjeeling-tour"
+    }, {
+        "old": "/tour-package/darjeeling-sikkim-tour-from-siliguri",
+        "new": "/india/sikkim/tours/sikkim-darjeeling-tour"
+    }, {
+        "old": "/tour-package/mini-north-sikkim-tour-from-siliguri",
+        "new": "/india/sikkim/tours/north-sikkim-tour"
+    }, {
+        "old": "/tour-package/yana-murudeshwar-jog-falls-group-tour",
+        "new": "/india/karnataka/tours/jog-falls-yana-sirsi-murudeshwar-tour"
+    }, {
+        "old": "/tour-package/murudeshwar-and-jog-falls",
+        "new": "/india/karnataka/tours/jog-falls-yana-sirsi-murudeshwar-tour"
+    }, {
+        "old": "/tour-package/yana-sirsi-tour-from-mumbai-bangalore/",
+        "new": "/india/karnataka/tours/jog-falls-yana-sirsi-murudeshwar-tour"
+    }, {
+        "old": "/tour-package/heritage-karnataka/",
+        "new": "/india/karnataka/tours/hampi-badami-vijayapura-heritage-tour"
     }
 ]

@@ -1,12 +1,13 @@
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import TourListPage from "@/travel-components/TourListPage/TourListPage"
 import backend from "@/utils/backend"
-import LoadingIndicator from "@/travel-components/LoadingIndicator/LoadingIndicator"
+import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator"
+import ListPage from "@/components/common/ListPage/ListPage"
+import RedirectOnError from "@/components/common/Error/RedirectOnError"
 
 export default function SearchPlace() {
     const router = useRouter()
-    const [results, setResults] = useState(null)
+    const [results, setResults] = useState({tags: []})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -21,10 +22,13 @@ export default function SearchPlace() {
 
         const fetchResults = async () => {
             try {
-                const res = await fetch(`${backend.searchTourURL}/${encodeURIComponent(searchQuery)}`)
-                if (!res.ok) throw new Error("Failed to fetch tours")
-                const data = await res.json()
-                setResults(data)
+                const res = await fetch(`${backend.runtimeSearchURL}/${encodeURIComponent(searchQuery)}`)
+                if (!res.ok) {
+                    setResults({tags: []})
+                } else {
+                    const data = await res.json()
+                    setResults(data)
+                }
             } catch (err) {
                 console.error(err)
                 setError(err.message)
@@ -38,8 +42,7 @@ export default function SearchPlace() {
 
     if (!router.isReady) return <p>Initializing search...</p>
     if (loading) return <LoadingIndicator />
-    if (error) return <p>Error: {error}</p>
-    if (!results?.tours) return <p>{`No tours found for "${searchQuery}"`}</p>
+    if (error) return <RedirectOnError message={`Error: ${error}`} buttonText="Go to Homepage" />
 
-    return <TourListPage tours={results.tours} search={searchQuery} />
+    return <ListPage categories={results.categories} search={searchQuery}  />
 }

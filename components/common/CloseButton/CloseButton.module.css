@@ -1,0 +1,19 @@
+
+.CloseButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: xx-large;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.6s ease;
+}
+
+.CloseButton:hover {
+    transform: rotate(360deg);
+}

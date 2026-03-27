@@ -1,0 +1,82 @@
+.Section {
+    width: 100%;
+    display: block;
+}
+
+.SectionHeader:has(h1, h2) {
+    width: 90%;
+    margin: 10px auto 0 auto;
+    padding: 1rem;
+
+    border-radius: 10px;
+    background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
+    border: 2px solid var(--lightColor);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.SectionHeader h1 {
+    font-size: x-large;
+}
+
+.SectionHeader h2 {
+    font-size: larger;
+}
+
+.SectionHeader p {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.SectionHeader h3, 
+.SectionHeader h4, 
+.SectionHeader h5, 
+.SectionHeader h6 {
+    width: 90%;
+    padding: 5px;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.Section:has(.SectionHeader) {
+    margin-top: 2rem;
+}
+
+.SectionBody {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 0;
+    text-align: justify;
+    box-sizing: border-box;
+    border-radius: 0 0 10px 10px;
+    border: 2px solid var(--lightColor);
+    background-color: var(--darkColor);
+    border-top: none;
+    padding: 1rem;
+}
+
+.SectionBody p {
+    line-height: 2;
+}
+
+.SectionBody li {
+    list-style-position: outside;
+}
+
+.SectionBody table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    justify-content: center;
+    justify-self: center;
+}
+  
+.SectionBody td {
+    border-top: 1px solid var(--lightColor);
+    border-bottom: 1px solid var(--lightColor);
+    border-left: none;
+    border-right: none;
+    padding: 8px 12px;
+    text-align: center;
+    width: 20%;
+}

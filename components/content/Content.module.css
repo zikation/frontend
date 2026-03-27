@@ -1,0 +1,74 @@
+.ShowParentCategory {
+    display: block;
+    margin-top: 1rem;
+    color: var(--linkColor);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: 50%;
+    height: auto;
+    margin: 10px auto;
+    background-color: var(--darkColor);
+    text-align: center;
+    border-radius: 10px;
+    border-color: var(--lightColor);
+    border: 2px solid var(--lightColor);
+}
+
+.ShowParentCategory a {
+    color: var(--linkColor);
+    transition: color 0.2s ease;
+}
+
+.ShowParentCategory a:hover {
+    color: var(--linkHoverColor);
+    text-decoration: underline;
+}
+
+.PriceFloater {
+    top: 25%;
+    right: 0;
+    position: fixed;
+    background-image: linear-gradient(to right, var(--lightColor), var(--darkColor));
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 15%;
+    border-radius: 10px;
+    cursor: pointer; 
+    animation: floater 2s ease-in-out infinite alternate;
+    z-index: 10;
+    border: 2px solid var(--linkColor);
+}
+
+.PriceFloaterLabel {
+    font-size: x-small;
+}
+
+.PriceFloaterPrice {
+    font-size: clamp(1rem, 5vw, 2.5rem); 
+    margin: 0;
+}
+
+.PriceCFP {
+    font-size: medium;
+    margin: 10px;
+}
+
+@keyframes floater {
+    0% {
+        transform: translateX(-25%);
+        border-color: orange; 
+        color: white;
+    }
+    50% { 
+        border-color: yellow; 
+        color: orange;
+    }
+    100% {
+        transform: translateX(0%);
+        border-color: white; 
+        color: yellow;
+    }
+}
