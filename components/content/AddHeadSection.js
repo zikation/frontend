@@ -1,11 +1,11 @@
 import Head from "next/head"
 import { BrandName, DefaultTourImage, SiteBaseURL } from '@/utils/constants'
 
-const AddHeadSection = ({item, skip = false}) => {
+const AddHeadSection = ({item, category, skip = false}) => {
     if (skip || !item) return null
 
-    const canonicalUrl = item.isVariantOf ? `${SiteBaseURL}/${item.location}/${item.sublocation}/${item.isVariantOf}` :
-        `${SiteBaseURL}/${item.location}/${item.sublocation}/${item.slug}`
+    const canonicalUrl = item.isVariantOf ? `${SiteBaseURL}/${item.location}/${item.sublocation}/${category}/${item.isVariantOf}` :
+        `${SiteBaseURL}/${item.location}/${item.sublocation}/${category}/${item.slug}`
     const canonicalKeywords = item.variantKeywords && Array.isArray(item.variantKeywords) ? item.variantKeywords.join(', ') : null
     const seotitle = item.seotitle ? `${item.seotitle} - ${BrandName}` : `${item.title} - ${BrandName}`
     // const image = `${SiteBaseURL}${item.bkgd?.path}` || `${SiteBaseURL}${DefaultTourImage}`

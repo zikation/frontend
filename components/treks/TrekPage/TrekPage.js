@@ -26,7 +26,7 @@ const TrekPage = ({ trek, category, skipHeadSection = false }) => {
     return (
         <>
             {/* Add <Head> Section */}
-            <AddHeadSection item={trek} skip={skipHeadSection} />
+            <AddHeadSection item={trek} category={category} skip={skipHeadSection} />
 
             {/* Add Title */}
             <Title title={trek.title} subtitle={trek.subtitle} content={trek.desc} />

@@ -16,7 +16,7 @@ const TourPage = ({tour, category, skipHeadSection = false}) => {
     return (
         <>
             {/* Add <Head> Section */}
-            <AddHeadSection item={tour} skip={skipHeadSection} />
+            <AddHeadSection item={tour} category={category} skip={skipHeadSection} />
 
             {/* Add Title */}
             <Title title={tour.title} subtitle={tour.subtitle} content={tour.desc} />
