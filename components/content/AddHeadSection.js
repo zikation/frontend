@@ -8,7 +8,8 @@ const AddHeadSection = ({item, skip = false}) => {
         `${SiteBaseURL}/${item.location}/${item.sublocation}/${item.slug}`
     const canonicalKeywords = item.variantKeywords && Array.isArray(item.variantKeywords) ? item.variantKeywords.join(', ') : null
     const seotitle = item.seotitle ? `${item.seotitle} - ${BrandName}` : `${item.title} - ${BrandName}`
-    const image = `${SiteBaseURL}${item.bkgd?.path}` || `${SiteBaseURL}${DefaultTourImage}`
+    // const image = `${SiteBaseURL}${item.bkgd?.path}` || `${SiteBaseURL}${DefaultTourImage}`
+    const image = `${SiteBaseURL}/home/bhutan.jpg`
 
     return (
         <Head>
