@@ -23,6 +23,7 @@ const AddHeadSection = ({item, category, skip = false}) => {
             <meta property="og:site_name" content={BrandName} />
             <meta name="twitter:title" content={item.title} />
             <meta name="twitter:description" content={item.metadesc ? item.metadesc : `Book ${item.title} with ${BrandName}`} />
+            <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:image" content={image} />
             <meta name="twitter:site" content="@ZikationIndia" />
             <img src={image} alt={item.title} style={{ display: "none" }} />
